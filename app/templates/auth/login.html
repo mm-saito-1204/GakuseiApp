@@ -1,0 +1,72 @@
+<!--
+    ログイン画面
+    
+    変更日 2022/07/11
+    変更者 Naoki
+-->
+
+{% extends "layout.html" %}
+
+{% block title %}
+ログイン
+{% endblock %}
+ 
+{% block css %}
+<link rel="stylesheet" href="../../static/css/login.css">
+{% endblock %}
+
+{% block content %}
+<!-- ヘッダー -->
+<div class="flex" id="header">
+    <p class="image" id="Logo">
+        <a href="/auth/login" role="button">
+            <img src="../../static/image/logo/SPLogomsg170-40.png" class="logo">
+        </a>
+    </p>
+</div>
+<hr class="divider-w mb-10" id="titleHr">
+
+<!-- タイトル用コンテナ -->
+<div class="container">
+    <h3 align="center" for="title"><b>ログイン</b></h3>
+</div>
+
+<!-- flashMessage用 -->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="container">
+            <ul id="flash">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endwith %}
+
+<!-- フォーム用コンテナ -->
+<div class="container">
+    <!-- ここからフォーム -->
+    <form method="POST">
+        <!-- 学籍番号ラベル name=studentNumber -->
+        <div class="mb-3">
+            <label class="form-label" for="studentNumber">学籍番号</label>
+            <input type="text" class="form-control" id="text" name="studentNumber">
+        </div>
+        <!-- パスワードラベル name=password -->
+        <div class="mb-3">
+            <label class="form-label" for="password">パスワード</label>
+            <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" name="password">
+        </div>
+        <!-- 送信ボタン -->
+        <button type="submit" class="btn btn-primary col-12">次へ</button>
+    </form>
+    <!-- ここまでフォーム -->
+</div>
+
+<!-- リンク用コンテナ -->
+<div class="container">
+    <a href="/auth/signup" role="button">▶︎アカウント新規作成</a>
+</div>
+{% endblock %}
+

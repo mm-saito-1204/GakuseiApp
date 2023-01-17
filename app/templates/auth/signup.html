@@ -1,0 +1,126 @@
+<!--
+    サインアップ(会員登録)画面
+
+    変更日 2022/07/11
+    変更者 Naoki
+-->
+
+{% extends "layout.html" %}
+
+{% block title %}
+会員登録
+{% endblock %}
+ 
+{% block css %}
+<link rel="stylesheet" href="../../static/css/signup.css">
+{% endblock %}
+
+{% block js %}
+<script src="../../static/js/formCheck.js" ></script>
+{% endblock %}
+
+{% block content %}
+<!-- ヘッダー -->
+<div class="flex" id="header">
+    <p class="image" id="Logo">
+        <a href="/auth/login" role="button">
+            <img src="../../static/image/logo/SPLogomsg170-40.png" class="logo">
+        </a>
+    </p>
+</div>
+<hr class="divider-w mb-10" id="titleHr">
+
+<!-- タイトル用コンテナ -->
+<div class="container">
+    <h3 align="center" for="title"><b>会員登録</b></h3>
+</div>
+
+<!-- flashMessage用 -->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="container">
+            <ul id="flash">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endwith %}
+
+<!-- フォーム用コンテナ -->
+<div class="container">
+    <!-- ここからフォーム -->
+    <form method="POST" class="needs-validation" novalidate>
+        <!-- 学籍番号ラベル name=studentNumber -->
+        <div class="mb-3">
+            <label class="form-label" for="studentNumber">学籍番号</label>
+            <input type="text" class="form-control" name="studentNumber" placeholder="学籍番号6桁を入力してください"  name="studentNumber" required>
+            <div class="invalid-feedback">※必須</div>
+        </div>
+        <!-- パスワードラベル name=password -->
+        <div class="mb-3">
+            <label class="form-label" for="password">パスワード</label>
+            <input type="password" class="form-control" name="password" aria-describedby="passwordHelp" placeholder="ログイン用パスワードを入力してください" required>
+            <small id="passwordHelp" class="form-text text-muted">※7文字以上の半角英数字</small>
+            <div class="invalid-feedback">※必須</div>
+        </div>
+        <!-- ニックネームラベル name=username -->
+        <div class="mb-3">
+            <label class="form-label" for="username">ニックネーム</label>
+            <input type="text" class="form-control" name="username" placeholder="アプリ内で公開されるユーザ名" required>
+            <div class="invalid-feedback">※必須</div>
+        </div>
+        <!-- 氏名ラベル 姓=lastname 名=firstname -->
+        <div class="mb-3">
+            <label class="form-label" for="realname">氏名</label>
+            <div class="row g-1">
+                <div class="mb-3 col-md-6"><!-- 姓 -->
+                    <input type="text" class="form-control" name="lastname" placeholder="姓" required>
+                    <div class="invalid-feedback">※必須</div>
+                </div>
+                <div class="mb-3 col-md-6"><!-- 名 -->
+                    <input type="text" class="form-control" name="firstname" placeholder="名" required>
+                    <div class="invalid-feedback">※必須</div>
+                </div>
+            </div>
+            <small id="realnameHelp" class="form-text text-muted">※本名を入力してください</small>
+        </div>
+        <!-- 性別 女性=genderWomen 男性=genderMen その他=genderOthers -->
+        <div class="mb-3">
+            <label class="form-label" for="genderlabel">性別</label>
+            <!-- 性別ラジオボタン[女性] -->
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" name="genderWomen" value="women">
+                <label class="form-check-label" for="genderWomen">
+                    女性
+                </label>
+            </div>
+            <!-- 性別ラジオボタン[男性] -->
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" name="genderMen" value="men">
+                <label class="form-check-label" for="genderMen">
+                    男性
+                </label>
+            </div>
+            <!-- 性別ラジオボタン[その他] -->
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" name="genderOthers" value="others" required>
+                <label class="form-check-label" for="genderOthers">
+                    その他
+                </label>
+                <div class="invalid-feedback">※必須</div>
+            </div>
+            <small id="realnameHelp" class="form-text text-muted">※この情報が公開されることはありません</small>
+        </div>
+        <!-- 送信ボタン -->
+        <button type="submit" class="btn btn-primary col-12">次へ</button>
+    </form>
+    <!-- ここまでフォーム -->
+</div>
+
+<!-- リンク用コンテナ -->
+<div class="container">
+    <a href="/auth/login" role="button">▶︎既にアカウント取得済みの方はこちら</a>
+</div>
+{% endblock %}

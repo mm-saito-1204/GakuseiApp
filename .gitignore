@@ -1,0 +1,7 @@
+# venvによる仮想環境の除外
+# venvにインストールするライブラリは[requirements.txt]に記載
+.venv/
+
+# 自動生成されるキャッシュの除外
+__pycache__/
+

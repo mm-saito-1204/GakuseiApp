@@ -1,0 +1,97 @@
+<!--
+    検索結果タイムライン画面
+    
+    変更日 2022/07/08
+    変更者 Naoki
+-->
+
+{% extends "layout.html" %}
+{% block title %}
+検索結果ページ
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="../../static/css/explore.css">
+{% endblock %}
+
+{% block content %}
+<!-- ヘッダー -->
+<div class="flex" id="header">
+    <div class="row" id="header">
+        <!-- 左ブロック -->
+        <div class="col-3">
+                <p class="image" id="Logo">
+                    <a href="/base/home" role="button">
+                        <img src="../../static/image/logo/SPLogomsg170-40.png" class="logo">
+                    </a>
+                </p>
+        </div>
+        <!-- 中央ブロック -->
+        <div class="col-6">
+        </div>
+        <!-- 右ブロック 検索フォーム id=search -->
+        <div class="col-3" id="header">
+            <form class="row gx-2" id="header">
+                <div class="col-auto" id="searchInput">
+                    <input class="form-control mr-sm-2" type="search" placeholder="検索キーワード" aria-label="検索キーワード" id="search">
+                </div>
+                <div class="col-auto" id="searchButton">
+                    <button class="btn btn-light my-2 my-sm-0" type="submit" id="mainColor">検索</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr id="titleHr" class="divider-w mb-10">
+
+<!--コンテンツコンテナ -->
+<div class="container">
+    <div class="row">
+        <!-- 左ブロック -->
+        <div class="col-12 col-md-4 col-lg-3">
+            <div class="container">
+                <div class="row">
+                    <a href="/auth/mypage" role="button">マイページ</a>
+                </div>
+                <div class="row">
+                    <a href="未定" role="button">設　定</a>
+                </div>
+                <div class="row">
+                    <a href="未定" role="button">ログアウト</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 中央ブロック -->
+        <div class="col-12 col-md-8 col-lg-6 border-left border-right">
+            <div class="container">
+                <div class="row">ーーーーーーーーーーーーーータイムライン1ーーーーーーーーーーーーーー</div>
+                <div class="row">ーーーーーーーーーーーーーータイムライン2ーーーーーーーーーーーーーー</div>
+                <div class="row">ーーーーーーーーーーーーーータイムライン3ーーーーーーーーーーーーーー</div>
+                {% for post in posts %}
+                    <article>
+                        <p>{{ post.username }}</p><p>{{ post.created_at }}</p>
+                        <h2>{{ post.title }}</h2>
+                        <p>{{ post.body }}</p>
+                        {% for tag in tags %}
+                            <p>{{ tag.tagName }}</p>
+                        {% endfor %}
+                    </article>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- 右ブロック -->
+        <div class="col-12 col-md-12 col-lg-3">
+            <div class="container">
+                <div class="row">タグ１</div>
+                <div class="row">タグ２</div>
+                <div class="row">タグ３</div>
+                <div class="row">タグ４</div>
+                <div class="row">タグ５</div>
+                <div class="row">タグ６</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

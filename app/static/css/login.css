@@ -1,0 +1,21 @@
+#titleHr  {
+    margin : 0px;
+    padding : 0px;
+    padding-bottom: 10px;
+}
+
+#header {
+    margin-bottom : 0px;
+    padding-bottom: 0px;
+    justify-content: center;
+    align-items: center;
+}
+
+#Logo {
+    margin: 10px;
+    margin-left: 25px;
+}
+
+#flash {
+    color: red;
+}

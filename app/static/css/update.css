@@ -1,0 +1,31 @@
+#titleHr  {
+    margin : 0px;
+    padding : 0px;
+    padding-bottom: 10px;
+}
+
+#header {
+    margin-bottom : 0px;
+    padding-bottom: 0px;
+    justify-content: center;
+    align-items: center;
+}
+
+#Logo {
+    margin: 10px;
+    margin-left: 25px;
+} 
+
+#fileMessage {
+    color: gray;
+}
+
+.imagePreview {
+    width: 100%;
+    height: 180px;
+    background-color: gainsboro;
+    background-position: center center;
+    background-repeat:no-repeat;
+    background-size: 180px;
+    display: inline-block;
+}

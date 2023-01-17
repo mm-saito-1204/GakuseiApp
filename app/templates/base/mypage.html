@@ -1,0 +1,113 @@
+<!--
+    マイページ画面
+    
+    変更日 2022/07/08
+    変更者 Naoki
+-->
+
+{% extends "layout.html" %}
+{% block title %}
+マイページ
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="../../static/css/mypage.css">
+{% endblock %}
+
+{% block content %}
+<!-- ヘッダー -->
+<div class="flex" id="header">
+    <div class="row" id="header">
+        <!-- 左ブロック -->
+        <div class="col-3">
+            <p class="image" id="Logo">
+                <a href="/base/home" role="button">
+                    <img src="../../static/image/logo/SPLogomsg170-40.png" class="logo">
+                </a>
+            </p>
+        </div>
+        <!-- 中央ブロック -->
+        <div class="col-6">
+        </div>
+        <!-- 右ブロック 検索フォーム id=search -->
+        <div class="col-3" id="header">
+            <form class="row gx-2" id="header">
+                <div class="col-auto" id="searchInput">
+                    <input class="form-control mr-sm-2" type="search" placeholder="検索キーワード" aria-label="検索キーワード" id="search">
+                </div>
+                <div class="col-auto" id="searchButton">
+                    <button class="btn btn-light my-2 my-sm-0" type="submit" id="mainColor">検索</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr id="titleHr" class="divider-w mb-10">
+
+<!--コンテンツコンテナ -->
+<div class="container">
+    <div class="row">
+        <!-- 左ブロック -->
+        <div class="col-12 col-md-4 col-lg-3">
+            <div class="container">
+                <div class="row">
+                    <a href="/base/home" role="button">ホーム</a>
+                </div>
+                <div class="row">
+                    <a href="../post/create" role="button">投　稿</a>
+                </div>
+                <div class="row">
+                    <a href="未定" role="button">設　定</a>
+                </div>
+                <div class="row">
+                    <a href="/auth/logout" role="button">ログアウト</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 中央ブロック -->
+        <div class="col-12 col-md-8 col-lg-6 border-left border-right" id="userTop">
+            <div class="container" id="userTop">
+                <div class="container border-bottom">
+                    <div class="row">
+                        <p><img src="../../static/image/user/topIcon.jpeg" alt="投稿画像" weight="35" height="35">
+                            <b>(ユーザアイコン) {{ loginUser }}</b></p>
+                        <p>新潟情報専門学校 R8A8の◯◯です。ゲームが好きです。よろしくお願いします。</p>
+                    </div>
+                </div>
+                {% for post in posts %}
+                    <div class="container border-bottom">
+                        <p><img src="../../static/image/user/topIcon.jpeg" alt="投稿画像" weight="35" height="35">
+                            <b>{{ post.username }}</b> / {{ post.created_at }} 
+                            {% if post.username == loginUser  %}
+                                <a href="/post/{{ post.postId }}/update" role="button" id="updateButton">更新</a>
+                                /
+                                <a href="/post/{{ post.postId }}/delete" role="button" id="deleteButton">削除</a>
+                            {% endif %}
+                        </p>
+                        <h3>{{ post.title }}</h3>
+                        <p>{{ post.body }}</p>
+                        {% if post.image != "" %}
+                            <p><img src="../../static/image/post/{{ post.image }}" alt="投稿画像" weight="250" height="250"></p>
+                        {% endif %}
+                        <p id="tags">#{{ post.tag_1 }} #{{ post.tag_2 }} #{{ post.tag_3 }} #{{ post.tag_4 }} #{{ post.tag_5 }} </p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- 右ブロック -->
+        <div class="col-12 col-md-12 col-lg-3">
+            <div class="container">
+                <div class="row">よく使うタグ</div>
+                <div class="row">タグ１</div>
+                <div class="row">タグ２</div>
+                <div class="row">タグ３</div>
+                <div class="row">タグ４</div>
+                <div class="row">タグ５</div>
+                <div class="row">タグ６</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

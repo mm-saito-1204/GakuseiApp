@@ -1,0 +1,80 @@
+<!--
+    記事更新画面
+    
+    変更日 2022/07/13
+    変更者 Naoki
+-->
+
+{% extends "layout.html" %}
+
+{% block title %}
+記事編集画面
+{% endblock %}
+ 
+{% block css %}
+<link rel="stylesheet" href="../../static/css/update.css">
+{% endblock %}
+
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../../static/js/filePreview.js" ></script>
+<script src="../../static/js/formCheck.js" ></script>
+{% endblock %}
+
+{% block content %}
+<!-- ヘッダー -->
+<div class="flex" id="header">
+    <p class="image" id="Logo">
+        <a href="/base/home" role="button">
+            <img src="../../static/image/logo/SPLogomsg170-40.png" class="logo">
+        </a>
+    </p>
+</div>
+<hr class="divider-w mb-10" id="titleHr">
+
+<!-- タイトル用コンテナ -->
+<div class="container">
+    <h3 align="center" for="title"><b>編集画面</b></h3>
+</div>
+
+<!-- フォーム用コンテナ -->
+<div class="container">
+    <!-- ここからフォーム -->
+    <form method="POST" class="needs-validation" enctype = "multipart/form-data" novalidate>
+        <!-- タイトルラベル name=titleName -->
+        <div class="mb-3">
+            <label class="form-label" for="titleName">タイトル</label>
+            <input type="text" class="form-control" name="titleName" value={{ post.title }} required>
+            <div class="invalid-feedback">※必須</div>
+        </div>
+        <!-- タグラベル name=tags -->
+        <div class="mb-3">
+            <label class="form-label" for="tags">タグ</label>
+            <input type="text" class="form-control" name="tags"
+                    value="{{ post.tag_1 }} {{ post.tag_2 }} {{ post.tag_3 }} {{ post.tag_4 }} {{ post.tag_5 }}">
+            <small id="tagsHelp" class="form-text text-muted">タグは半角スペースで区切ってください(タグは5つまで)</small>
+        </div>
+        <!-- 内容ラベル name=body -->
+        <div class="mb-3">
+            <label class="form-label" for="body">内容</label>
+            <textarea class="form-control" name="body" rows="10" required>{{ post.body }}</textarea>
+            <div class="invalid-feedback">※必須</div>
+        </div>
+
+        <!-- 画像ラベル 画像=image ファイル名=imageName -->
+        <div class="mb-3">
+            <p id="fileMessage">※画像は更新できません</p>
+        </div>
+
+        <!-- 送信ボタン -->
+        <button type="submit" class="btn btn-primary col-12">更新</button>
+    </form>
+    <!-- ここまでフォーム -->
+</div>
+
+<!-- リンク用コンテナ -->
+<div class="container">
+    <a href="/base/home" role="button">▶︎キャンセル</a>
+</div>
+{% endblock %}
+

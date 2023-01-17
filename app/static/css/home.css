@@ -1,0 +1,39 @@
+#titleHr  {
+    margin : 0px;
+    padding : 0px;
+}
+
+#header {
+    margin-bottom : 0px;
+    padding-bottom: 0px;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchInput {
+    padding-right: 0px;
+}
+#searchButton {
+    padding-left: 0px;
+}
+
+#mainColor {
+    /* background-color: aquamarine; */
+    /* background-color: darkolivegreen; */
+    background-color: darkgreen;
+    color: antiquewhite;
+    border-color: grey;
+}
+
+#Logo {
+    margin: 10px;
+    margin-left: 25px;
+}
+
+#updateButton {
+    text-align: right;
+}
+
+#tags {
+    color: blue
+}
